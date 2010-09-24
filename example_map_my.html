@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Google Maps</title>
+  
+  <style type="text/css">
+    html {height:100%}
+    body {height:100%; margin: 0px; padding: 0px}
+    #map_canvas {height: 100%}
+  </style>
+  
+  <script type = "text/javascript" 
+    src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  
+  <script type="text/javascript">
+    function initialize() {
+      var latlng = new google.maps.LatLng(-27.500468,153.0150032);
+      var myOptions = {
+        zoom: 16,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      
+      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+      var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title:"This is GP South",
+        zIndex: 1
+      });
+      
+      var image = 'http://code.google.com/apis/maps/documentation/javascript/examples/images/beachflag.png';
+      latlng = new google.maps.LatLng(-27.497346, 153.013252);
+      var beachMarker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title:"Hello",
+        icon:image,
+        zIndex: 2
+      });
+      
+      var myRouteCoordinates = [
+        new google.maps.LatLng(-27.500468,153.0150032),
+        new google.maps.LatLng(-27.500144553511564, 153.01470279693604),
+        new google.maps.LatLng(-27.498450589002417, 153.01405906677246),
+        new google.maps.LatLng(-27.49734664304444, 153.01307201385498)
+      ];
+      
+      var myRoute = new google.maps.Polyline({
+        path: myRouteCoordinates,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        zIndex: 3
+      });
+      
+      myRoute.setMap(map);
+    }
+  </script>
+
+</head>
+
+<body onload="initialize()">
+
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+  
+</body>
+
+</html>
